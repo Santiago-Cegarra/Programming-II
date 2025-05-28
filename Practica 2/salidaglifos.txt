@@ -1,0 +1,11 @@
+3 -> ΣΣΣ
+8 -> ΛΣΣΣ
+172 -> ΦΔΩΩΣΣ
+4 -> ΣΛ
+1990 -> ΞΦΞΩΦ
+9 -> ΣΩ
+49 -> ΩΔΣΩ
+3999 -> ΞΞΞΦΞΩΦΣΩ
+1 -> Σ
+4000 ERROR: Numero fuera de rango (1-3999).
+abc ERROR: Formato de entrada invalido. No es un numero.
