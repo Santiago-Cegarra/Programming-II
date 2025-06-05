@@ -58,7 +58,32 @@ def showFileProcessed():
         texto2.delete("1.0", "end")
         texto2.insert("1.0", f"Error al procesar el archivo:\n{str(e)}")
 
+def processTextInput():
+    contenido = texto1.get("1.0", "end").strip().splitlines()
+    if not contenido or all(line.strip() == "" for line in contenido):
+        texto2.delete("1.0", "end")
+        texto2.insert("1.0", "Primero ingresa texto en el cuadro de entrada.")
+        return
+    salida_lineas = []
+    for linea in contenido:
+        linea = linea.strip()
+        if linea == "":
+            continue
+        if linea == "0":
+            break
+        try:
+            n = int(linea)
+        except ValueError:
+            salida_lineas.append(f"{linea} ERROR: Formato inválido. No es un número entero.")
+            continue
 
+        if not (1 <= n <= 3999):
+            salida_lineas.append(f"{linea} ERROR: Número fuera de rango (1-3999).")
+            continue
+        glifos = procesarGlifos(n)
+        salida_lineas.append(f"{n} -> {glifos}")
+    texto2.delete("1.0", "end")
+    texto2.insert("1.0", "\n".join(salida_lineas))
 
 root.geometry('600x500')
 set_appearance_mode('dark')
@@ -86,5 +111,10 @@ boton3.place(relx=0.39,rely=0.8)
 
 texto2 = CTkTextbox(master=root, scrollbar_button_color='purple', corner_radius=15, border_color="purple", border_width=1)
 texto2.place(relx=0.6,rely=0.2)
+
+boton4 = CTkButton(master=root, text="->",fg_color="#4158D0",     
+                hover_color="#C850C0", command=processTextInput, width=10)
+boton4.place(relx=0.49, rely=0.4)  
+
 
 root.mainloop()
